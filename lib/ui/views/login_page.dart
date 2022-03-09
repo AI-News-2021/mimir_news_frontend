@@ -102,6 +102,9 @@ class Login_Page extends StatelessWidget {
                         title: 'Login',
                         hasBorder: true,
                         buttonFunction: MimirRouter.ROUTE_MAIN,
+                        onTap: () => {
+                          print('Login clicked')
+                        },
                       ),
                       const SizedBox(
                         height: 10.0,

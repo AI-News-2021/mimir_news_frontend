@@ -112,7 +112,8 @@ class Register_Page extends StatelessWidget {
                       BigButtonWidget(
                         title: 'Go back to Login',
                         hasBorder: false,
-                        buttonFunction: MimirRouter.ROUTE_POP,
+                        onTap: () => print('jojo'),
+                        buttonFunction: MimirRouter.ROUTE_MAIN,
                       ),
                     ],
                   ),

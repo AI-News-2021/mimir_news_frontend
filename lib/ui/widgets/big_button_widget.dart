@@ -4,12 +4,14 @@ import 'package:mimir_news_frontend/ui/router/router.dart';
 class BigButtonWidget extends StatelessWidget {
   final String title;
   final bool hasBorder;
-  final buttonFunction;
+  final String? buttonFunction; // TODO: Rename to something like "toRoute" or whatever
+  final Function? onTap;
 
   BigButtonWidget({
     required this.title,
     required this.hasBorder,
-    required this.buttonFunction,
+    this.buttonFunction,
+    this.onTap
   });
 
   // void login_button_pressed() {
@@ -53,11 +55,19 @@ class BigButtonWidget extends StatelessWidget {
                 ),
               ),
               onTap: (){
-                if (buttonFunction == MimirRouter.ROUTE_POP){
-                  Navigator.pop(context);
-                } else {
-                  Navigator.pushNamed(context, buttonFunction);
+                if (onTap != null) {
+                  onTap!();
                 }
+
+                if (buttonFunction != null) {
+                  if (buttonFunction == MimirRouter.ROUTE_POP){
+                    Navigator.pop(context);
+                  } else {
+                    Navigator.pushNamed(context, buttonFunction!);
+                  }
+                }
+
+                // TODO: Throw error: no onTap & no buttonFunction
               }
           ),
         ),
