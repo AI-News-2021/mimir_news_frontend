@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
 
-class BigTextBoxWidget extends StatelessWidget {
+class BigTextBoxWidget extends StatefulWidget {
+  const BigTextBoxWidget({
+    required this.hintText,
+    required this.prefixIconData,
+    required this.suffixIconData,
+    required this.autocorrect,
+    required this.passwordField,
+  });
+
   final String hintText;
   final IconData prefixIconData;
   final IconData suffixIconData;
-  final bool obscureText;
-  //final Function onChanged;
+  final bool autocorrect;
+  final bool passwordField;
 
-  BigTextBoxWidget(
-      {required this.hintText,
-      required this.prefixIconData,
-      required this.suffixIconData,
-      required this.obscureText,
-      //required this.onChanged,
+  @override
+  _BigTextBoxWidgetState createState() => _BigTextBoxWidgetState();
+}
 
-      });
+class _BigTextBoxWidgetState extends State<BigTextBoxWidget> {
+  bool _obscureText = true;
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: TextField(
+      child: TextFormField(
         //onChanged: onChanged,
-        obscureText: obscureText,
         style: const TextStyle(
             fontSize: 15,
             fontFamily: 'Poppins',
             color: Color(0xff4e5155),
             fontWeight: FontWeight.w600),
         decoration: InputDecoration(
-          labelText: hintText,
+          labelText: widget.hintText,
           prefixIcon: Icon(
-            prefixIconData,
+            widget.prefixIconData,
             size: 27,
             color: const Color(0xff584cde),
           ),
@@ -43,18 +49,33 @@ class BigTextBoxWidget extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.0),
           ),
-          suffixIcon: Icon(
-            suffixIconData,
-            size: 18,
-            color: const Color(0xffcbd0d8),
-          ),
+          suffixIcon: widget.passwordField
+              ? GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                  child: Icon(
+                    _obscureText ? Icons.visibility : Icons.visibility_off,
+                    size: 18,
+                    color: const Color(0xffcbd0d8),
+                  ),
+                )
+              : Icon(
+                  widget.suffixIconData,
+                  size: 18,
+                  color: const Color(0xffcbd0d8),
+                ),
           labelStyle: const TextStyle(
             color: Color(0xff4e5155),
             //focusColor: color: Color(0xffcbd0d8),
           ),
         ),
+        autocorrect: widget.autocorrect,
+        obscureText: !widget.passwordField ? false : _obscureText,
+        //obscureText: widget.obscureText,
       ),
-
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(

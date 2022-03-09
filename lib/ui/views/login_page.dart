@@ -1,113 +1,121 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mimir_news_frontend/ui/views/forget_password_page.dart';
-import '../widgets/go_back_big_button_widget.dart';
 import '/ui/widgets/big_button_widget.dart';
 import '/ui/widgets/big_textbox_widget.dart';
 import '/ui/widgets/big_textbox_head.dart';
-import 'package:mimir_news_frontend/ui/views/sign_up_page.dart';
-import '/ui/widgets/go_back_big_button_widget.dart';
+import 'package:drop_shadow_image/drop_shadow_image.dart';
 
 class Login_Page extends StatelessWidget {
-  var _loginuser_textbox_head = 'Username';
-  var _loginpassword_textbox_head = 'Password';
-
-
-
   @override
   Widget build(BuildContext context) {
+    final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(50.0),
-                    child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.start,
-                      //crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          child: Image.asset('assets/login_logo.png'),
-                          decoration: const BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x33000000),
+        //resizeToAvoidBottomInset: false,
+        body: Container(
+          alignment: FractionalOffset.bottomCenter,
+          child: SingleChildScrollView(
+            child: Stack(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: <Widget>[
+                      if (!isKeyboard)
+                        Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: Column(
+                            children: [
+
+                              DropShadowImage(
+                                image: Image.asset(
+                                  'assets/mimir_logo.png',
+                                ),
+                                //color: Color(0x33000000),
                                 offset: Offset(0, 3),
-                                blurRadius: 30,
+                                blurRadius: 6,
+                              ),
+
+
+
+                              Container(
+                                child: Image.asset(
+                                  'assets/mimir_text_grey.png',
+                                  scale: 4,
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
 
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Big_textbox_head(
-                          bigButtonTextHead: _loginuser_textbox_head),
-                      BigTextBoxWidget(
-                        hintText: 'Username or Email',
-                        prefixIconData: Icons.person_outline,
-                        suffixIconData: Icons.done,
-                        obscureText: false,
-                        //onChanged: true,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Big_textbox_head(bigButtonTextHead: 'Username'),
+                          BigTextBoxWidget(
+                            hintText: 'Username or Email',
+                            prefixIconData: Icons.person_outline,
+                            suffixIconData: Icons.done,
+                            autocorrect: false,
+                            passwordField: false,
+                            //onChanged: true,
+                          ),
+                          //PasswordField(),
+                          Big_textbox_head(bigButtonTextHead: 'Password'),
+                          BigTextBoxWidget(
+                            hintText: 'Password',
+                            prefixIconData: Icons.lock_outline,
+                            suffixIconData: Icons.visibility,
+                            autocorrect: false,
+                            passwordField: true,
+                            //onChanged: true,
+                          ),
+                          const SizedBox(
+                            height: 15.0,
+                          ),
+                          InkWell(
+                            child: const Text(
+                              'Forgot password?',
+                              style: TextStyle(
+                                  color: Color(0xff584cde),
+                                  fontSize: 15,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Forget_Password_Page())),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          const SizedBox(
+                            height: 15.0,
+                          ),
+                        ],
                       ),
-                      Big_textbox_head(
-                          bigButtonTextHead: _loginpassword_textbox_head),
-                      BigTextBoxWidget(
-                        hintText: 'Password',
-                        prefixIconData: Icons.lock_outline,
-                        suffixIconData: Icons.visibility,
-                        obscureText: false,
-                        //onChanged: true,
+                      BigButtonWidget(
+                        title: 'Login',
+                        hasBorder: true,
+                        buttonFunction: '/',
                       ),
                       const SizedBox(
-                        height: 15.0,
-                      ),
-                      InkWell(
-                        child: const Text(
-                          'Forgot password?',
-                          style: TextStyle(
-                              color: Color(0xff584cde),
-                              fontSize: 15,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600),
-                        ),
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Forget_Password_Page())
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15.0,
+                        height: 10.0,
+                      ), // gegebenenfalls löschen
+                      BigButtonWidget(
+                        title: 'Register Now',
+                        hasBorder: false,
+                        buttonFunction: 'register_rout',
                       ),
                     ],
                   ),
-                  BigButtonWidget(
-                    title: 'Login',
-                    hasBorder: true,
-                    buttonFunction: 'Sign_Up_Page',
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ), // gegebenenfalls löschen
-                  BigButtonWidget(
-                    title: 'Register Now',
-                    hasBorder: false,
-                    buttonFunction: 'Sign_Up_Page',
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

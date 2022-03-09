@@ -48,7 +48,8 @@ dev_dependencies:
   flutter_svg: ^1.0.3
   provider: ^3.2.0
   url_launcher: ^6.0.20
-  flutter_launcher_icons: "^0.9.2"
+  decorated_icon: ^1.2.1
+  drop_shadow_image: ^0.9.1
 
 
 flutter_icons:
@@ -92,10 +93,10 @@ flutter:
         - asset: fonts/Poppins-Light.ttf
           weight: 600
           style: italic
-
-  #  - family: Lora
-  #    fonts:
-  #      - asset: fonts/Lora-Variable.ttf
+    - family: Lora
+      fonts:
+        - asset: fonts/Lora-Regular.ttf
+          weight: 500
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
