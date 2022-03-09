@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mimir_news_frontend/ui/router/router.dart';
 import '/ui/widgets/big_button_widget.dart';
 import '/ui/widgets/big_textbox_widget.dart';
 import '/ui/widgets/big_textbox_head.dart';
@@ -75,7 +76,7 @@ class Forget_Password_Page extends StatelessWidget {
                       BigButtonWidget(
                         title: 'Send me a link to reset the password',
                         hasBorder: true,
-                        buttonFunction: 'Sign_Up_Page',
+                        buttonFunction: MimirRouter.ROUTE_REGISTER,
                       ),
                       const SizedBox(
                         height: 10.0,
@@ -83,7 +84,7 @@ class Forget_Password_Page extends StatelessWidget {
                       BigButtonWidget(
                         title: 'Go back',
                         hasBorder: false,
-                        buttonFunction: 'pop_rout',
+                        buttonFunction: MimirRouter.ROUTE_POP,
                       ),
                     ],
                   ),

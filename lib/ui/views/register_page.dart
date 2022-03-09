@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mimir_news_frontend/ui/router/router.dart';
 import '/ui/widgets/big_button_widget.dart';
 import '/ui/widgets/big_textbox_widget.dart';
 import '/ui/widgets/big_textbox_head.dart';
@@ -103,7 +104,7 @@ class Register_Page extends StatelessWidget {
                       BigButtonWidget(
                         title: 'Register',
                         hasBorder: true,
-                        buttonFunction: 'Register_Now',
+                        buttonFunction: MimirRouter.ROUTE_REGISTER,
                       ),
                       const SizedBox(
                         height: 10.0,
@@ -111,7 +112,7 @@ class Register_Page extends StatelessWidget {
                       BigButtonWidget(
                         title: 'Go back to Login',
                         hasBorder: false,
-                        buttonFunction: 'pop_rout',
+                        buttonFunction: MimirRouter.ROUTE_POP,
                       ),
                     ],
                   ),

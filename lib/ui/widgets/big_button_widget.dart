@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mimir_news_frontend/ui/router/router.dart';
 
 class BigButtonWidget extends StatelessWidget {
   final String title;
@@ -52,7 +53,7 @@ class BigButtonWidget extends StatelessWidget {
                 ),
               ),
               onTap: (){
-                if (buttonFunction == 'pop_rout'){
+                if (buttonFunction == MimirRouter.ROUTE_POP){
                   Navigator.pop(context);
                 } else {
                   Navigator.pushNamed(context, buttonFunction);

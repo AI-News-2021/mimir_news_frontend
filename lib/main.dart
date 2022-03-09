@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mimir_news_frontend/ui/router/router.dart' as router;
+import 'package:mimir_news_frontend/ui/router/router.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -36,8 +36,8 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.deepPurple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      onGenerateRoute: router.generateRoute,
-      initialRoute: logged_in ? '/' : 'login_rout',
+      onGenerateRoute: MimirRouter.generateRoute,
+      initialRoute: logged_in ? MimirRouter.ROUTE_MAIN : MimirRouter.ROUTE_LOGIN,
     );
   }
 }
