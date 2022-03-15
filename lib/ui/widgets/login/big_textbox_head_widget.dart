@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Big_textbox_head extends StatelessWidget {
+class BigTextboxHeadWidget extends StatelessWidget {
   final bigButtonTextHead;
 
-  Big_textbox_head({required this.bigButtonTextHead});
+  BigTextboxHeadWidget({required this.bigButtonTextHead});
 
   @override
   Widget build(BuildContext context) {
     return Align(
         alignment: Alignment.centerLeft,
         child: Padding(
-            padding: EdgeInsets.only(left: 10, top: 10, bottom: 10,),
+            padding: EdgeInsets.only(left: 10,),
             child: Text(
               bigButtonTextHead,
               style: const TextStyle(

@@ -1,21 +1,69 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mimir_news_frontend/ui/router/router.dart';
-import 'package:mimir_news_frontend/ui/views/forget_password_page.dart';
-import '/ui/widgets/big_button_widget.dart';
-import '/ui/widgets/big_textbox_widget.dart';
-import '/ui/widgets/big_textbox_head.dart';
-import 'package:drop_shadow_image/drop_shadow_image.dart';
+import 'package:get/get.dart';
+import '../../functions/controller/login_controller.dart';
+import '../../functions/routes/route.dart';
+import '../widgets/login/big_button_widget.dart';
+import '../widgets/login/big_textbox_head_widget.dart';
+import '../widgets/login/big_textbox_widget.dart';
+import '../widgets/login/login_logo_widget.dart';
+import '../widgets/login/big_textbutton_right_widget.dart';
 
-class Login_Page extends StatelessWidget {
+class LoginPage extends GetView<LoginController> {
+  LoginPage({Key? key}) : super(key: key);
+
+  final LoginController controller = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
+    //final emailController = TextEditingController();
+    //final passwordController = TextEditingController();
+
+
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        //resizeToAvoidBottomInset: false,
+
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.logout),
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                content: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+
+                      //border: Border.all(color: Colors.green, width: 3),
+
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x33000000),
+                          offset: Offset(0, 3),
+                          blurRadius: 6,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.favorite, color: Colors.green ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text('Yay! A SnackBar!\nYou did great!', style: TextStyle(color: Colors.green)),
+                        ),
+                        const Spacer(),
+                        TextButton(onPressed: () => debugPrint("Undid"), child: Text("Undo"))
+                      ],
+                    )
+                ),
+              ),
+            );
+          },
+        ),
+
         body: Container(
           alignment: FractionalOffset.bottomCenter,
           child: SingleChildScrollView(
@@ -25,94 +73,56 @@ class Login_Page extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: <Widget>[
-                      if (!isKeyboard)
-                        Padding(
-                          padding: const EdgeInsets.all(1.0),
-                          child: Column(
-                            children: [
-
-                              DropShadowImage(
-                                image: Image.asset(
-                                  'assets/mimir_logo.png',
-                                ),
-                                //color: Color(0x33000000),
-                                offset: Offset(0, 3),
-                                blurRadius: 6,
-                              ),
-
-
-
-                              Container(
-                                child: Image.asset(
-                                  'assets/mimir_text_grey.png',
-                                  scale: 4,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Big_textbox_head(bigButtonTextHead: 'Username'),
-                          BigTextBoxWidget(
-                            hintText: 'Username or Email',
-                            prefixIconData: Icons.person_outline,
-                            suffixIconData: Icons.done,
-                            autocorrect: false,
-                            passwordField: false,
-                            //onChanged: true,
-                          ),
-                          //PasswordField(),
-                          Big_textbox_head(bigButtonTextHead: 'Password'),
-                          BigTextBoxWidget(
-                            hintText: 'Password',
-                            prefixIconData: Icons.lock_outline,
-                            suffixIconData: Icons.visibility,
-                            autocorrect: false,
-                            passwordField: true,
-                            //onChanged: true,
-                          ),
-                          const SizedBox(
-                            height: 15.0,
-                          ),
-                          InkWell(
-                            child: const Text(
-                              'Forgot password?',
-                              style: TextStyle(
-                                  color: Color(0xff584cde),
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        Forget_Password_Page())),
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          const SizedBox(
-                            height: 15.0,
-                          ),
-                        ],
+                      if (!isKeyboard) const LoginLogo(),
+                      BigTextboxHeadWidget(bigButtonTextHead: 'E-Mail'),
+                      BigTextBoxWidget(
+                        hintText: 'E-Mail',
+                        prefixIconData: Icons.person_outline,
+                        suffixIconData: Icons.done,
+                        autocorrect: false,
+                        passwordField: false,
+                        emailField: true,
+                        controller: controller.emailController,
+                      ),
+                      //PasswordField(),
+                      BigTextboxHeadWidget(bigButtonTextHead: 'Password'),
+                      BigTextBoxWidget(
+                        hintText: 'Password',
+                        prefixIconData: Icons.lock_outline,
+                        suffixIconData: Icons.visibility,
+                        autocorrect: false,
+                        passwordField: true,
+                        emailField: false,
+                        controller: controller.passwordController,
+                      ),
+                      BigTextbuttonRightWidget(
+                        title: 'Forget Password',
+                        toRoute: Routes.ROUTE_FORGETPASSWORD,
+                        onTap: () => {print('Register Now clicked')},
                       ),
                       BigButtonWidget(
                         title: 'Login',
                         hasBorder: true,
-                        buttonFunction: MimirRouter.ROUTE_MAIN,
                         onTap: () => {
-                          print('Login clicked')
+                          print(controller.emailController),
+                          print(controller.passwordController),
+                          GetUtils.isEmail(controller.emailController.text) && GetUtils.isLengthGreaterOrEqual(controller.passwordController.text, 3)
+                              ? {
+                                  print('Email and Password is Valid'),
+                                  controller.login(controller.emailController.text, controller.passwordController.text),
+                                  Get.snackbar('Login', 'Login successfully'),
+                                  Get.toNamed(Routes.ROUTE_FEED),
+                                }
+                              : {
+                                  print('Email or Password is invalid'),
+                                  Get.snackbar('Login', 'Invalid email or password')
+                                },
                         },
                       ),
-                      const SizedBox(
-                        height: 10.0,
-                      ), // gegebenenfalls löschen
                       BigButtonWidget(
                         title: 'Register Now',
                         hasBorder: false,
-                        buttonFunction: MimirRouter.ROUTE_REGISTER,
+                        toRoute: Routes.ROUTE_REGISTER,
                       ),
                     ],
                   ),
