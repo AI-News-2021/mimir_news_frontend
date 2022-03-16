@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 
-import '../widgets/feed/navbar_top_widget.dart';
-
+import '../widgets/feed/navbar/navbar_top_widget.dart';
+import '../widgets/feed/post/postbox_widget.dart';
 
 class FeedPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -13,7 +12,8 @@ class FeedPage extends StatelessWidget {
       child: WillPopScope(
         onWillPop: () => Future.value(false),
         child: new Scaffold(
-          backgroundColor: Color(0xfffcfcff),
+          //backgroundColor: Color(0xfffcfcff),
+          backgroundColor: Color(0xffebebf1),
           //backgroundColor: Colors.orange,
 
           floatingActionButton: FloatingActionButton(
@@ -33,20 +33,48 @@ class FeedPage extends StatelessWidget {
           ),
           body: Container(
             alignment: FractionalOffset.topCenter,
-            child: SingleChildScrollView(
               child: Stack(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: NavbarTopWidget(
 
+                  Container(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 100,
+                            ),
+
+
+                            PostBoxWidget(),
+
+                            SizedBox(
+                              height: 15,
+                            ),
+
+                            PostBoxWidget(),
+
+                            SizedBox(
+                              height: 15,
+                            ),
+
+                            PostBoxWidget(),
+
+                            SizedBox(
+                              height: 15,
+                            ),
+
+                            PostBoxWidget(),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
+                  NavbarTopWidget(),
                 ],
               ),
-            ),
           ),
-
         ),
       ),
     );
