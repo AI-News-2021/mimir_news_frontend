@@ -39,7 +39,7 @@ class FeedPage extends StatelessWidget {
                   Container(
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 0),
                         child: Column(
                           children: [
                             SizedBox(
@@ -49,21 +49,14 @@ class FeedPage extends StatelessWidget {
 
                             PostBoxWidget(),
 
-                            SizedBox(
-                              height: 15,
-                            ),
+
 
                             PostBoxWidget(),
 
-                            SizedBox(
-                              height: 15,
-                            ),
+
 
                             PostBoxWidget(),
 
-                            SizedBox(
-                              height: 15,
-                            ),
 
                             PostBoxWidget(),
                           ],
