@@ -44,7 +44,7 @@ class NavbarTopWidget extends StatelessWidget {
                  offset: Offset(0, 3),
                  blurRadius: 6,
                ),
-            
+
             Image.asset(
               'assets/mimir_text_grey.png',
               scale: 4.5,
