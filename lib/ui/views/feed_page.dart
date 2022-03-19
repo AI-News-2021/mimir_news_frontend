@@ -36,10 +36,15 @@ class FeedPage extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
 
-                  Container(
+                  NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (OverscrollIndicatorNotification overscroll) {
+                      overscroll.disallowGlow();
+                      return true;
+                    },
                     child: SingleChildScrollView(
+
                       child: Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 0),
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 0),
                         child: Column(
                           children: [
                             SizedBox(

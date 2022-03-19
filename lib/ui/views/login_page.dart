@@ -8,22 +8,24 @@ import '../widgets/login/big_textbox_widget.dart';
 import '../widgets/login/login_logo_widget.dart';
 import '../widgets/login/big_textbutton_right_widget.dart';
 
+import 'package:get_storage/get_storage.dart';
+
 class LoginPage extends GetView<LoginController> {
   LoginPage({Key? key}) : super(key: key);
 
   final LoginController controller = Get.put(LoginController());
+
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
     //final emailController = TextEditingController();
     //final passwordController = TextEditingController();
 
-
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.logout),
           onPressed: () {
@@ -49,21 +51,22 @@ class LoginPage extends GetView<LoginController> {
                     ),
                     child: Row(
                       children: [
-                        const Icon(Icons.favorite, color: Colors.green ),
+                        const Icon(Icons.favorite, color: Colors.green),
                         const Padding(
                           padding: EdgeInsets.only(left: 8.0),
-                          child: Text('Yay! A SnackBar!\nYou did great!', style: TextStyle(color: Colors.green)),
+                          child: Text('Yay! A SnackBar!\nYou did great!',
+                              style: TextStyle(color: Colors.green)),
                         ),
                         const Spacer(),
-                        TextButton(onPressed: () => debugPrint("Undid"), child: Text("Undo"))
+                        TextButton(
+                            onPressed: () => debugPrint("Undid"),
+                            child: Text("Undo"))
                       ],
-                    )
-                ),
+                    )),
               ),
             );
           },
         ),
-
         body: Container(
           alignment: FractionalOffset.bottomCenter,
           child: SingleChildScrollView(
@@ -103,20 +106,25 @@ class LoginPage extends GetView<LoginController> {
                       BigButtonWidget(
                         title: 'Login',
                         hasBorder: true,
-                        onTap: () => {
-                          print(controller.emailController),
-                          print(controller.passwordController),
+                        onTap: () async {
+                          print(controller.emailController);
+                          print(controller.passwordController);
                           GetUtils.isEmail(controller.emailController.text) && GetUtils.isLengthGreaterOrEqual(controller.passwordController.text, 3)
-                              ? {
-                                  print('Email and Password is Valid'),
-                                  controller.login(controller.emailController.text, controller.passwordController.text),
-                                  Get.snackbar('Login', 'Login successfully'),
-                                  Get.toNamed(Routes.ROUTE_FEED),
+                              ? {await controller.login(controller.emailController.text, controller.passwordController.text),
+                                  (box.read('token') != null) ? {
+                                          print('Email and Password is Valid'),
+                                          Get.snackbar('Login', 'Login successfully'),
+                                          Get.toNamed(Routes.ROUTE_FEED),
+                                        }
+                                      : {
+                                          print('Email or Password is invalid'),
+                                          Get.snackbar('Login', 'Invalid email or password')
+                                        },
                                 }
                               : {
                                   print('Email or Password is invalid'),
                                   Get.snackbar('Login', 'Invalid email or password')
-                                },
+                                };
                         },
                       ),
                       BigButtonWidget(

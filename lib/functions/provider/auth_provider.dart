@@ -9,9 +9,9 @@ class AuthProvider extends GetConnect {
     super.onInit();
   }
 
-  void addTokenToRequest() {
+  void addTokenToRequest(String token) {
     httpClient.addRequestModifier<dynamic>((request) {
-      String token = storage.read('token');
+      //String token = storage.read('token');
       request.headers['Authorization'] = 'Bearer $token';
       return request;
     });

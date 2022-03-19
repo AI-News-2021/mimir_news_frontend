@@ -10,9 +10,11 @@ class Page1 extends StatelessWidget {
             padding: EdgeInsets.only(left: 10, right: 10),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
+
               child: Image.network(
                 'https://www.tagesschau.de/multimedia/bilder/meta-119~_v-original.jpg',
                 fit: BoxFit.cover,
+
               ),
             ),
       ),

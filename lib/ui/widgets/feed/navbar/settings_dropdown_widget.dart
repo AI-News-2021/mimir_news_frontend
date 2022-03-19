@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:focused_menu/focused_menu.dart';
-import 'package:focused_menu/modals.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:get/get.dart';
+import '../../../../functions/controller/login_controller.dart';
 import '../../../../functions/routes/route.dart';
+import 'package:get_storage/get_storage.dart';
+
+import 'focused_menu/focused_menu_widget.dart';
+import 'focused_menu/moduals.dart';
+
 
 class SettingsDropdownWidget extends StatefulWidget {
   const SettingsDropdownWidget({Key? key}) : super(key: key);
@@ -14,6 +18,8 @@ class SettingsDropdownWidget extends StatefulWidget {
 
 class _SettingsDropdownWidget extends State<SettingsDropdownWidget> {
 
+  final storage = GetStorage();
+  final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +28,25 @@ class _SettingsDropdownWidget extends State<SettingsDropdownWidget> {
 
             menuItems: [
               FocusedMenuItem(
+                title: Text('Profile Details'),
+                trailingIcon: Icon(Icons.person_outline),
+                onPressed: () => {print('Profile Deteils'), controller.getAuthInfo(), Get.toNamed(Routes.ROUTE_PROFILE), },
+              ),
+              FocusedMenuItem(
                 title: Text('More Soon'),
-                 trailingIcon: Icon(Icons.more),
+                 trailingIcon: Icon(Icons.more_horiz),
                  onPressed: () => {print('test')},
               ),
               FocusedMenuItem(
                 title: Text('Log Out', style: TextStyle(color: Color(0xffffffff))),
                 trailingIcon: Icon(Icons.logout, color: Color(0xffffffff)),
                 backgroundColor: Color(0xffff0000),
-                onPressed: () => {print('Sign Out'), Get.toNamed(Routes.ROUTE_LOGIN)},
+                onPressed: () => {print('Sign Out'), storage.remove('token'), Get.toNamed(Routes.ROUTE_LOGIN)},
               ),
             ],
 
-            //blurBackgroundColor: Color.blueGrey[900],
+            //blurBackgroundColor: Color(0xffffffff),
+            blurSize: 1,
             //menuItemExtent: 20,
             //menuWidth: MediaQuery.of(context).size.width,
             menuWidth: 250,

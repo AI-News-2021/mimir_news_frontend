@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mimir_news_frontend/ui/views/login_page.dart';
+import 'package:mimir_news_frontend/ui/views/profile_page.dart';
 import '';
 import '../../ui/views/feed_page.dart';
 import '../../ui/views/forget_password_page.dart';
@@ -12,6 +13,7 @@ class Routes {
   static const ROUTE_LOGIN = '/loginPage';
   static const ROUTE_REGISTER = '/registerPage';
   static const ROUTE_FORGETPASSWORD = '/forgetPasswordPage';
+  static const ROUTE_PROFILE = '/profilePage';
   static const ROUTE_POP = '/popPage';
   static const ROUTE_TEST = '/test';
 
@@ -33,6 +35,10 @@ class Routes {
     GetPage(
       name: '/forgetPasswordPage',
       page: () => ForgetPasswordPage(),
+    ),
+    GetPage(
+      name: '/profilePage',
+      page: () => ProfilePage(),
     ),
     GetPage(
       name: '/popPage',
