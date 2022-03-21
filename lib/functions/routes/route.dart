@@ -5,7 +5,6 @@ import '';
 import '../../ui/views/feed_page.dart';
 import '../../ui/views/forget_password_page.dart';
 import '../../ui/views/register_page.dart';
-import '../../ui/widgets/feed/post/postbox_widget_test.dart';
 
 class Routes {
 
@@ -43,10 +42,6 @@ class Routes {
     GetPage(
       name: '/popPage',
       page: () => ForgetPasswordPage(),
-    ),
-    GetPage(
-      name: '/test',
-      page: () => PostBoxWidgetTest(),
     ),
 
     // es gibt Get.back();
