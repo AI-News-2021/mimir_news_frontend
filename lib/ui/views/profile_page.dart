@@ -35,7 +35,7 @@ class ProfilePage extends GetView<LoginController> {
                       if (!isKeyboard) const LoginLogo(),
 
                       BigTextboxHeadWidget(bigButtonTextHead: 'E-Mail'),
-                      Obx(() => Text(controller.profileData.toString())),
+                      Obx(() => Text(controller.authData().email.toString())),
 
                       BigButtonWidget(
                         title: 'Go Back',

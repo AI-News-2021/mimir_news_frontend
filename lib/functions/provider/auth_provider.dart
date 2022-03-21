@@ -6,6 +6,9 @@ class AuthProvider extends GetConnect {
 
   @override
   void onInit() {
+    final token = storage.read('token');
+    if (token != null) addTokenToRequest(storage.read('token'));
+
     super.onInit();
   }
 
