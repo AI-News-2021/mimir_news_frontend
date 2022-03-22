@@ -3,8 +3,10 @@ import 'package:flutter/widgets.dart';
 import '../widgets/feed/detailed_post/panel_widget.dart';
 import '../widgets/feed/navbar/navbar_top_widget.dart';
 import '../widgets/feed/post/background/time_stamp_background.dart';
+import '../widgets/feed/post/foreground/post_title_widget.dart';
 import '../widgets/feed/post/foreground/post_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -119,13 +121,45 @@ class _FeedPageState extends State<FeedPage> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
               ),
 
-              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10,top: 10, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 100,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 5, bottom: 5, right: 5),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
 
-                child: Text(
-                  "This is the collapsed Widget",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
+                            child: Image.network(
+                              'https://www.tagesschau.de/multimedia/bilder/meta-119~_v-original.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width - 150,
+                        child: AutoSizeText(
+                          'Facebook’s Mark Zuckerberg announces the Metaverse.',
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: Color(0xff4e5155),
+                              fontFamily: 'Lora',
+                              fontWeight: FontWeight.w700
+                          ),
+                          minFontSize: 10,
+                          stepGranularity: 10,
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                        )
+
+                      ),
+                    ],
+                  ),
+                )
             ),
 
 

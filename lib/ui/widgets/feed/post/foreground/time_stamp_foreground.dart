@@ -14,9 +14,7 @@ class TimeStampForeground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 11),
-      child: Row(
+    return Row(
         children: [
           Column(
             children: [
@@ -47,7 +45,6 @@ class TimeStampForeground extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
+      );
   }
 }
