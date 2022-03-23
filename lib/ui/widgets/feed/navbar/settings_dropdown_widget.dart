@@ -28,17 +28,26 @@ class _SettingsDropdownWidget extends State<SettingsDropdownWidget> {
 
             menuItems: [
               FocusedMenuItem(
-                title: Text('Profile Details'),
+                title: Text('Profile Details' , style: const TextStyle(
+                    fontSize: 14,
+                    //color: Color(0xffcbd0d8),
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500),),
                 trailingIcon: Icon(Icons.person_outline),
                 onPressed: () => {print('Profile Deteils'), controller.getAuthInfo(), Get.toNamed(Routes.ROUTE_PROFILE), },
               ),
               FocusedMenuItem(
-                title: Text('More Soon'),
+                title: Text('More Soon', style: const TextStyle(
+                    fontSize: 14,
+                    //color: Color(0xffcbd0d8),
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500),),
                  trailingIcon: Icon(Icons.more_horiz),
                  onPressed: () => {print('test')},
               ),
               FocusedMenuItem(
-                title: Text('Log Out', style: TextStyle(color: Color(0xffffffff))),
+                title: Text('Log Out', style: TextStyle(color: Color(0xffffffff), fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500)),
                 trailingIcon: Icon(Icons.logout, color: Color(0xffffffff)),
                 backgroundColor: Color(0xffff0000),
                 onPressed: () => {print('Sign Out'), storage.remove('token'), Get.toNamed(Routes.ROUTE_LOGIN)},

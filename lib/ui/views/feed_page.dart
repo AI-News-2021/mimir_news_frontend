@@ -31,7 +31,7 @@ class _FeedPageState extends State<FeedPage> {
         onWillPop: () => Future.value(false),
         child: new Scaffold(
 
-          backgroundColor: Color(0xffebebf1),
+          backgroundColor: Color(0xfff2f1f6),
 
 
           body: SlidingUpPanel(
@@ -154,8 +154,7 @@ class _FeedPageState extends State<FeedPage> {
                           stepGranularity: 10,
                           maxLines: 4,
                           overflow: TextOverflow.ellipsis,
-                        )
-
+                        ),
                       ),
                     ],
                   ),

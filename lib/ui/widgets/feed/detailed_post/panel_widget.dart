@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import '../../global/list_view_underline_widget.dart';
+import '../../global/poppins_text_widget.dart';
+import '../../login/big_textbox_head_widget.dart';
 import '../post/components/dot.dart';
 import '../post/components/image_slider.dart';
 import '../post/components/line.dart';
@@ -9,15 +12,20 @@ import '../post/foreground/publications_widget.dart';
 import '../post/foreground/time_stamp_foreground.dart';
 import 'drag_handle_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:get/get.dart';
+import '../../../../functions/controller/login_controller.dart';
 
 class PanelWidget extends StatelessWidget {
   final ScrollController controller;
   final PanelController panelController;
+  final LoginController controller2 = Get.put(LoginController());
 
   PanelWidget({
     required this.controller,
     required this.panelController,
   });
+
+
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -135,7 +143,83 @@ class PanelWidget extends StatelessWidget {
                   ),
                 ),
 
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Container(
+                        child: BigTextboxHeadWidget(
+                            bigButtonTextHead: 'Dev Tools'),
+                        width: 100,
+                      ),
+                    ),
+                  ),
 
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                child: BigTextboxHeadWidget(
+                                    bigButtonTextHead: 'First Name'),
+                                width: 100,
+                              ),
+                              Container(
+                                child: Obx(() => PoppinsTextWidget(text: controller2.authData().firstName.toString())),
+                              ),
+                            ],
+                          ),
+                          height: 40,
+                        ),
+                        ListViewUnderlineWidget(),
+                        Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                child: BigTextboxHeadWidget(
+                                    bigButtonTextHead: 'Last Name'),
+                                width: 100,
+                              ),
+                              Container(
+                                child: Obx(() => PoppinsTextWidget(text: controller2.authData().lastName.toString())),
+                              ),
+                            ],
+                          ),
+                          height: 40,
+                        ),
+                        ListViewUnderlineWidget(),
+
+                        Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                child: BigTextboxHeadWidget(
+                                    bigButtonTextHead: 'E-Mail'),
+                                width: 100,
+                              ),
+                              Container(
+                                child: Obx(() => PoppinsTextWidget(text: controller2.authData().email.toString())),
+                              ),
+                            ],
+                          ),
+                          height: 40,
+                        ),
+
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color(0xfff2f1f6),
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(10.0),
+                        bottom: Radius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
