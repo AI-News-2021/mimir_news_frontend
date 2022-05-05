@@ -63,6 +63,8 @@ class _PostWidget extends State<PostWidget> {
             ],
           ),
         ),
+
+        // Strich unten
         Container(
           child: Align(
             alignment: Alignment.centerLeft,
@@ -81,7 +83,10 @@ class _PostWidget extends State<PostWidget> {
             ),
           ),
         ),
+
       ],
+
+
     );
   }
 }

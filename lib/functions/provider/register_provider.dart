@@ -8,6 +8,6 @@ class RegisterProvider extends GetConnect {
   }
 
   // Post request
-  Future<Response> register(String firstName, String lastName, String email, String password) => post('http://192.168.1.20:3000/user',
+  Future<Response> register(String firstName, String lastName, String email, String password) => post('http://192.168.1.75:3000/user',
       {'firstName': firstName, 'lastName': lastName , 'email': email, 'password': password});
 }

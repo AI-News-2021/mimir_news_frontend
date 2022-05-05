@@ -8,6 +8,8 @@ import '../widgets/feed/post/foreground/post_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import '../widgets/feed/post/timeline_builder.dart';
+
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
 
   final panelController = PanelController();
+  final controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,64 +43,18 @@ class _FeedPageState extends State<FeedPage> {
               child: Stack(
                 children: <Widget>[
 
+
+
                   NotificationListener<OverscrollIndicatorNotification>(
                     onNotification: (OverscrollIndicatorNotification overscroll) {
                       overscroll.disallowGlow();
                       return true;
                     },
-                    child: SingleChildScrollView(
-
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 0),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 85,
-                            ),
 
 
-                            TimeStampBackground(
-                              first: true,
-                              timeStempData: 'Today',
-                            ),
+                    child: TimelineBuilder(),
 
 
-                            PostWidget(
-                                postTimeData: '6 hours ago',
-                                postHeadTitleData: 'Facebook’s Mark Zuckerberg announces the Metaverse. fgureshbouigrdiughuoiradughiruadhigrduhiguhirguioharegouiprsedgiojrtdiojhgiopjrtdigojrdiojgiojrdsgijordiojgriadojgiojriojgrijaodgijordaijogjrideogaoirejmdghboirdphjgjmesrigfURPOAGJMREAUGIJRDIOLAGKNRDAGIOURJGNRIUDGNIURDGHNIUDRNGIRNGRDNGUIRDHNGAIHN',
-                                postPublicationsData: '120'
-                            ),
-
-
-
-                            PostWidget(
-                                postTimeData: '6 hours ago',
-                                postHeadTitleData: 'Facebook’s Mark Zuckerberg announces the Metaverse.',
-                                postPublicationsData: '120'
-                            ),
-
-
-
-                            PostWidget(
-                                postTimeData: '6 hours ago',
-                                postHeadTitleData: 'Facebook’s Mark Zuckerberg announces the Metaverse.',
-                                postPublicationsData: '120'
-                            ),
-
-
-                            PostWidget(
-                                postTimeData: '6 hours ago',
-                                postHeadTitleData: 'Facebook’s Mark Zuckerberg announces the Metaverse.',
-                                postPublicationsData: '120'
-                            ),
-
-                            SizedBox(
-                              height: 100,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                   ),
                   NavbarTopWidget(),
                 ],

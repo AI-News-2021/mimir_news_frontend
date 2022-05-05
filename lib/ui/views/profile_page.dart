@@ -89,7 +89,6 @@ class ProfilePage extends GetView<LoginController> {
                               ),
                               height: 40,
                             ),
-
                           ],
                         ),
                         decoration: BoxDecoration(

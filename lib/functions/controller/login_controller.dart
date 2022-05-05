@@ -17,10 +17,13 @@ class LoginController extends GetxController {
   login(String email, String password) async {
     var response = await authProvider.login(email, password);
     //print(response.body);
-    if (!response.hasError && response.body != '') {
-      storage.write('token', response.body);
-      authProvider.addTokenToRequest(response.body);
-    } else {print(response.hasError); print(response.body);}
+    if (!response.hasError && response.body != null) {
+      final token = response.body['token'];
+      storage.write('token', token);
+      authProvider.addTokenToRequest(token);
+    } else {
+      print(response.hasError);
+    }
   }
 
   getAuthInfo() async {

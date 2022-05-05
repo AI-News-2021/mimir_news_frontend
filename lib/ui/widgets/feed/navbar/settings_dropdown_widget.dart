@@ -37,6 +37,15 @@ class _SettingsDropdownWidget extends State<SettingsDropdownWidget> {
                 onPressed: () => {print('Profile Deteils'), controller.getAuthInfo(), Get.toNamed(Routes.ROUTE_PROFILE), },
               ),
               FocusedMenuItem(
+                title: Text('Dev Page', style: const TextStyle(
+                    fontSize: 14,
+                    //color: Color(0xffcbd0d8),
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500),),
+                trailingIcon: Icon(Icons.more_horiz),
+                onPressed: () => {print('Dev Page'), controller.getAuthInfo(), Get.toNamed(Routes.ROUTE_DEV), },
+              ),
+              FocusedMenuItem(
                 title: Text('More Soon', style: const TextStyle(
                     fontSize: 14,
                     //color: Color(0xffcbd0d8),
