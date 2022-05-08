@@ -51,7 +51,7 @@ class PanelWidget extends StatelessWidget {
                     children: [
                       TimeStampForeground(
                         first: true,
-                        timeStempData: '6 hours ago',
+                        timeStempData: DateTime.parse('2022-04-22T10:47:33.869Z'),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 8.8),
@@ -90,7 +90,7 @@ class PanelWidget extends StatelessWidget {
                   ),
                 ),
 
-                ImageSlider(),
+                //ImageSlider(),
 
                 PublicationsWidget(
                   postPublicationsData: '130',
@@ -116,7 +116,7 @@ class PanelWidget extends StatelessWidget {
                     children: [
                       TimeStampForeground(
                         first: true,
-                        timeStempData: '',
+                        timeStempData: DateTime.parse('2022-04-22T10:47:33.869Z'),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 8.8),

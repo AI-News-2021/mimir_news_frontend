@@ -1,88 +1,93 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mimir_news_frontend/ui/widgets/feed/post/background/time_stamp_background.dart';
+import '../../../../functions/controller/timeline_controller.dart';
 import 'foreground/post_widget.dart';
+import 'package:get/get.dart';
 
-class TimelineBuilder extends StatefulWidget {
-  const TimelineBuilder({Key? key}) : super(key: key);
-
-  //TimelineBuilder({required this.items, required this.controller});
-
-  //final List<String> items;
-  //final controller;
-
-  @override
-  State<TimelineBuilder> createState() => _TimelineBuilderState();
-}
-
-class _TimelineBuilderState extends State<TimelineBuilder> {
-  List<String> items = List.generate(
-    3,
-    (index) => 'ITEM ${index + 1}',
-  );
-  final controller = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller.addListener(() {
-      if (controller.position.maxScrollExtent == controller.offset) {
-        fetch();
-      }
-    });
-  }
-
-  Future fetch() async {
-    setState(() {
-      items.addAll(['Item A', 'Item B', 'Item C', 'Item D']);
-    });
-  }
+class TimelineBuilder extends GetView<TimelineController> {
+  final controller = Get.put(TimelineController());
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      controller: controller,
+      controller: controller.scrollController,
       child: Column(
         children: [
           SizedBox(
             height: 110,
           ),
+
           Container(
             margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 0),
-            child: ListView.builder(
-              padding: const EdgeInsets.all(0),
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: items.length + 1,
-              itemBuilder: (context, index) {
-                if (index < items.length) {
-                  return Column(
-                    children: [
-                      PostWidget(
-                          postTimeData: '6 hours ago',
-                          postHeadTitleData:
-                              'Facebook’s Mark Zuckerberg announces the Metaverse.',
-                          postPublicationsData: '120'),
+            child: Obx(() => ListView.builder(
+                  padding: const EdgeInsets.all(0),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: controller.timelineItems.length,
+                  itemBuilder: (context, index) {
+                    var renderTimestamp = index == 0 ? true : false;
+                    if(index != 0 && controller.timelineItems[index - 1].date.day < controller.timelineItems[index].date.day) {
+                      renderTimestamp = true;
+                    }
 
-                      //ListTile(
-                      //  title: Text(items[index]),
-                      //),
-                    ],
-                  );
-                } else {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 32),
-                    child: Center(child: CircularProgressIndicator()),
-                  );
-                }
-              },
-            ),
+                    if (index < controller.timelineItems.length) {
+                      final timelinePost = controller.timelineItems[index];
+                      return Column(
+                        children: [
+                          renderTimestamp ? TimeStampBackground(
+                            first: index == 0 ? true : false,
+                            timeStempData:  controller.timelineItems[index].date,
+                          ) : const Stroke(),
+                          PostWidget(
+                              postTimeData: timelinePost.date,
+                              postHeadTitleData: timelinePost.title,
+                              postPublicationsData: timelinePost.publicationAmount.toString(),
+                              postImageArrayData: timelinePost.images,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 32),
+                        child: Center(child: CircularProgressIndicator()),
+                      );
+                    }
+                  },
+                )),
           ),
           SizedBox(
-            height: 100,
+            height: 200,
           ),
         ],
       ),
     );
+  }
+}
+
+class Stroke extends StatelessWidget {
+  const Stroke({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return         // Strich unten
+      Container(
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            height: 15,
+            width: 2.5,
+            //height: 356,
+            //padding: const EdgeInsets.only(left: 21.2, top: 0, bottom: 0, right: 0),
+            margin: EdgeInsets.only(left: 18.5, top: 0, bottom: 0, right: 0),
+            //padding: const EdgeInsets.only(left: 4.5, top: 3, bottom: 0, right: 3.5),
+            decoration: BoxDecoration(
+              color: Color(0xff999da3),
+              //border: Border.all(color: Color(0xff999da3), width: 10.0),
+              //borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            ),
+          ),
+        ),
+      );
   }
 }

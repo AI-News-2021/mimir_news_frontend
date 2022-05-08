@@ -3,7 +3,11 @@ import '../../pages/page_1.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ImageSlider extends StatefulWidget {
-  const ImageSlider({Key? key}) : super(key: key);
+  const ImageSlider({
+    required this.postImageArrayData,
+  });
+
+  final List<String> postImageArrayData;
 
   @override
   State<ImageSlider> createState() => _ImageSliderState();
@@ -19,27 +23,33 @@ class _ImageSliderState extends State<ImageSlider> {
         Container(
           height: 180,
           child: PageView(
-            controller: _controller,
-            children: [
-              Page1(),
-              Page1(),
-              Page1(),
-              Page1(),
-              Page1(),
-            ],
-          ),
+              controller: _controller,
+              children: widget.postImageArrayData.map((item) {
+                return Page1(postImageData: item);
+              }).toList()),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10),
-          child: SmoothPageIndicator(
-            controller: _controller,
-            count: 5,
-            effect: ExpandingDotsEffect(
-              activeDotColor: Color(0xff944cde),
-              dotColor: Color(0xffc8d0d8),
-              dotHeight: 7,
-              dotWidth: 7,
-              spacing: 5,
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x33000000),
+                  offset: Offset(0, 3),
+                  blurRadius: 6,
+                ),
+              ],
+            ),
+            child: SmoothPageIndicator(
+              controller: _controller,
+              count: widget.postImageArrayData.length,
+              effect: ExpandingDotsEffect(
+                activeDotColor: Color(0xff944cde),
+                dotColor: Color(0xffc8d0d8),
+                dotHeight: 7,
+                dotWidth: 7,
+                spacing: 5,
+              ),
             ),
           ),
         ),

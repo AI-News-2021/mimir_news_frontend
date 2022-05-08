@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
 import '../components/dot.dart';
 import '../components/line.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class TimeStampBackground extends StatelessWidget {
   final bool? first;
-  final String timeStempData;
+  final DateTime timeStempData;
 
   TimeStampBackground({
     this.first,
@@ -37,7 +37,7 @@ class TimeStampBackground extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 10),
             child: Text(
-              timeStempData,
+              timeago.format(timeStempData, locale: 'en_short'),
               style: const TextStyle(
                   fontSize: 18,
                   color: Color(0xff4e5155),
