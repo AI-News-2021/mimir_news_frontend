@@ -28,7 +28,7 @@ class Page1 extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),
           child: Image.memory(
-            base64Decode(postImageData),
+            base64Decode(base64.normalize(postImageData)),
             fit: BoxFit.cover,
           ),
         ),

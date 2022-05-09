@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mimir_news_frontend/ui/widgets/feed/post/background/time_stamp_background.dart';
+import 'package:mimir_news_frontend/ui/widgets/feed/post/components/time_stamp.dart';
 import '../../../../functions/controller/timeline_controller.dart';
 import 'foreground/post_widget.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class TimelineBuilder extends GetView<TimelineController> {
   final controller = Get.put(TimelineController());
@@ -17,7 +18,6 @@ class TimelineBuilder extends GetView<TimelineController> {
           SizedBox(
             height: 110,
           ),
-
           Container(
             margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 0),
             child: Obx(() => ListView.builder(
@@ -35,9 +35,13 @@ class TimelineBuilder extends GetView<TimelineController> {
                       final timelinePost = controller.timelineItems[index];
                       return Column(
                         children: [
-                          renderTimestamp ? TimeStampBackground(
-                            first: index == 0 ? true : false,
-                            timeStempData:  controller.timelineItems[index].date,
+                          renderTimestamp ? Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: TimeStamp(
+                              first: index == 0 ? true : false,
+                              timeStempData:  controller.timelineItems[index].date,
+                                backGroundText : true,
+                            ),
                           ) : const Stroke(),
                           PostWidget(
                               postTimeData: timelinePost.date,

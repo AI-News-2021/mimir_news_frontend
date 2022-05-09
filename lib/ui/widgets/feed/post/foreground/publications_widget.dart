@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PublicationsWidget extends StatefulWidget {
   const PublicationsWidget({
     required this.postPublicationsData,
-});
+  });
 
   final String postPublicationsData;
 
@@ -17,10 +17,9 @@ class _PublicationsWidgetState extends State<PublicationsWidget> {
     return Row(
       children: [
         Container(
-          margin:
-          const EdgeInsets.only(left: 10, top: 10, bottom: 10),
-          padding: const EdgeInsets.only(
-              left: 4.5, top: 3, bottom: 3, right: 3.5),
+          margin: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+          padding:
+              const EdgeInsets.only(left: 4.5, top: 3, bottom: 3, right: 3.5),
           decoration: BoxDecoration(
             border: Border.all(color: Color(0xff999da3), width: 2.0),
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -30,7 +29,7 @@ class _PublicationsWidgetState extends State<PublicationsWidget> {
               Padding(
                 padding: EdgeInsets.only(right: 3),
                 child: Icon(
-                  Icons.group,
+                  Icons.public,
                   color: Color(0xff999da3),
                   size: 10,
                 ),

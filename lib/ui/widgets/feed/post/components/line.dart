@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class Line extends StatelessWidget {
   final double height;
   final bool? invisable;
+  final bool? fadeout;
 
   Line({
     required this.height,
-    this.invisable
+    this.invisable,
+    this.fadeout,
   });
 
   @override
@@ -14,16 +16,17 @@ class Line extends StatelessWidget {
     return Container(
       height: height,
       width: 2.5,
-      //height: 356,
-      //padding: const EdgeInsets.only(left: 21.2, top: 0, bottom: 0, right: 0),
-
-      //margin: EdgeInsets.only(left: 10, top: 0, bottom: 0, right: 0),
-
-      //padding: const EdgeInsets.only(left: 4.5, top: 3, bottom: 0, right: 3.5),
-      decoration: BoxDecoration(
+      decoration: fadeout != null ? BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Color(0xff999da3),
+            Colors.white,
+          ],
+        ),
+      ) : BoxDecoration(
         color: Color(0xff999da3),
-        //border: Border.all(color: Color(0xff999da3), width: 10.0),
-        //borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
     );
   }

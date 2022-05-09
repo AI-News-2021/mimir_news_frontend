@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../widgets/feed/detailed_post/panel_widget.dart';
 import '../widgets/feed/navbar/navbar_top_widget.dart';
-import '../widgets/feed/post/background/time_stamp_background.dart';
-import '../widgets/feed/post/foreground/post_title_widget.dart';
-import '../widgets/feed/post/foreground/post_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-
 import '../widgets/feed/post/timeline_builder.dart';
 
 class FeedPage extends StatefulWidget {

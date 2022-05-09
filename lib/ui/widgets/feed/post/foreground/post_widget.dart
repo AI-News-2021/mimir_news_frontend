@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mimir_news_frontend/ui/widgets/feed/post/foreground/post_title_widget.dart';
 import 'package:mimir_news_frontend/ui/widgets/feed/post/foreground/publications_widget.dart';
-import 'package:mimir_news_frontend/ui/widgets/feed/post/foreground/time_stamp_foreground.dart';
+import 'package:mimir_news_frontend/ui/widgets/feed/post/components/time_stamp.dart';
 
-import '../background/time_stamp_background.dart';
 import '../components/image_slider.dart';
 
 class PostWidget extends StatefulWidget {
@@ -44,9 +43,12 @@ class _PostWidget extends State<PostWidget> {
           child: Column(
             children: [
 
-              TimeStampForeground(
-                first: false,
-                timeStempData: widget.postTimeData,
+              Padding(
+                padding: const EdgeInsets.only(left: 11.0),
+                child: TimeStamp(
+                  first: false,
+                  timeStempData: widget.postTimeData,
+                ),
               ),
 
               ImageSlider(postImageArrayData: widget.postImageArrayData,),

@@ -32,5 +32,6 @@ class LoginController extends GetxController {
     authData(AuthData.fromJson(response.body));
     //authData().toJson();
     profileData(response.body.toString());
+    return AuthData.fromJson(response.body);
   }
 }

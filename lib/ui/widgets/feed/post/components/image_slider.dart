@@ -21,15 +21,17 @@ class _ImageSliderState extends State<ImageSlider> {
     return Column(
       children: [
         Container(
-          height: 180,
+          height: 190,
+          width: MediaQuery.of(context).size.width,
           child: PageView(
               controller: _controller,
               children: widget.postImageArrayData.map((item) {
                 return Page1(postImageData: item);
               }).toList()),
         ),
+
         Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(bottom: 5),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [
