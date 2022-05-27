@@ -39,6 +39,47 @@ class _DevPageState extends State<DevPage> {
         onWillPop: () => Future.value(false),
         child: Scaffold(
           backgroundColor: Color(0xfff2f1f6),
+          floatingActionButton: FloatingActionButton(
+            child: const Icon(Icons.logout),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  content: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+
+                        //border: Border.all(color: Colors.green, width: 3),
+
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x33000000),
+                            offset: Offset(0, 3),
+                            blurRadius: 6,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.favorite, color: Colors.green),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 8.0),
+                            child: Text('Yay! A SnackBar!\nYou did great!',
+                                style: TextStyle(color: Colors.green)),
+                          ),
+                          const Spacer(),
+                          TextButton(
+                              onPressed: () => debugPrint("Undid"),
+                              child: Text("Undo"))
+                        ],
+                      )),
+                ),
+              );
+            },
+          ),
           body: SingleChildScrollView(
             controller: controller,
             child: Column(
@@ -67,6 +108,7 @@ class _DevPageState extends State<DevPage> {
                     },
                   ),
                 ),
+                SizedBox(height: 400,),
               ],
             ),
           ),

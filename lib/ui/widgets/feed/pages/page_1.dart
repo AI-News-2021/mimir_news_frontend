@@ -11,6 +11,10 @@ class Page1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (postImageData == '') {
+      return Container();
+    }
+
     return Container(
       margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: Container(

@@ -5,7 +5,7 @@ class PublicationsWidget extends StatefulWidget {
     required this.postPublicationsData,
   });
 
-  final String postPublicationsData;
+  final int postPublicationsData;
 
   @override
   State<PublicationsWidget> createState() => _PublicationsWidgetState();
@@ -35,7 +35,7 @@ class _PublicationsWidgetState extends State<PublicationsWidget> {
                 ),
               ),
               Text(
-                widget.postPublicationsData,
+                widget.postPublicationsData.toString(),
                 style: const TextStyle(
                     fontSize: 9,
                     color: Color(0xff999da3),

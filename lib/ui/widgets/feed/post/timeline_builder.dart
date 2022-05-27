@@ -15,7 +15,7 @@ class TimelineBuilder extends GetView<TimelineController> {
       controller: controller.scrollController,
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 110,
           ),
           Container(
@@ -44,15 +44,16 @@ class TimelineBuilder extends GetView<TimelineController> {
                             ),
                           ) : const Stroke(),
                           PostWidget(
+                              postIDData: timelinePost.id,
                               postTimeData: timelinePost.date,
                               postHeadTitleData: timelinePost.title,
-                              postPublicationsData: timelinePost.publicationAmount.toString(),
+                              postPublicationsData: timelinePost.publicationAmount,
                               postImageArrayData: timelinePost.images,
                           ),
                         ],
                       );
                     } else {
-                      return const Padding(
+                      return Padding(
                         padding: EdgeInsets.symmetric(vertical: 32),
                         child: Center(child: CircularProgressIndicator()),
                       );
@@ -60,9 +61,7 @@ class TimelineBuilder extends GetView<TimelineController> {
                   },
                 )),
           ),
-          SizedBox(
-            height: 200,
-          ),
+          SizedBox(height: 100,),
         ],
       ),
     );

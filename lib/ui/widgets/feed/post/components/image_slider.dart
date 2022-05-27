@@ -32,16 +32,6 @@ class _ImageSliderState extends State<ImageSlider> {
 
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x33000000),
-                  offset: Offset(0, 3),
-                  blurRadius: 6,
-                ),
-              ],
-            ),
             child: SmoothPageIndicator(
               controller: _controller,
               count: widget.postImageArrayData.length,
@@ -53,7 +43,6 @@ class _ImageSliderState extends State<ImageSlider> {
                 spacing: 5,
               ),
             ),
-          ),
         ),
       ],
     );
