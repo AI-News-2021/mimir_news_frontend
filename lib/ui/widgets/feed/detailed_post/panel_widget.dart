@@ -33,7 +33,7 @@ class PanelWidget extends GetView<NewsController> {
         children: [
           NotificationListener<OverscrollIndicatorNotification>(
             onNotification: (OverscrollIndicatorNotification overscroll) {
-              overscroll.disallowGlow();
+              overscroll.disallowIndicator();
               return true;
             },
             child: SingleChildScrollView(
@@ -121,10 +121,14 @@ class PanelWidget extends GetView<NewsController> {
                         controller.live().content,
                         style: TextStyle(
                             fontSize: 15,
+                            //height: 1.3,
+                            //decorationStyle: TextDecorationStyle.wavy,
                             fontFamily: 'Poppins',
                             color: Color(0xff4e5155),
                             fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.justify,
                       ),
+
                     ),
 
                     Devtools(

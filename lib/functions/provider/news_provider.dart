@@ -29,7 +29,7 @@ class NewsProvider extends GetConnect {
 
 
   Future<Map<String, dynamic>> getNews(String id) async {
-    final response = await get('http://192.168.1.75:3000/articles/article-data/$id');
+    final response = await get('http://130.61.250.130:3000/articles/article-data/$id');
     return response.body;
   }
 

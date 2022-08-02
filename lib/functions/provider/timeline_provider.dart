@@ -15,7 +15,7 @@ class TimelineProvider extends GetConnect {
         return map.map((item) => Timeline.fromJson(item)).toList();
     };
     */
-    //httpClient.baseUrl = 'http://192.168.1.75:3000/articles/article-data/';
+    //httpClient.baseUrl = 'http://130.61.250.130:3000/articles/article-data/';
 
     final token = storage.read('token');
     if (token != null) {
@@ -28,7 +28,7 @@ class TimelineProvider extends GetConnect {
   }
 
   Future<List<Timeline>> getTimeline(int limit , [String? date]) async {
-    var timelineEndpoint = 'http://192.168.1.75:3000/articles/article-data/timeline/?limit=$limit';
+    var timelineEndpoint = 'http://130.61.250.130:3000/articles/article-data/timeline/?limit=$limit';
     if (date != null ) {
       timelineEndpoint = timelineEndpoint + '&date=$date';
     }

@@ -22,7 +22,7 @@ class Line extends StatelessWidget {
           end: Alignment.bottomLeft,
           colors: [
             Color(0xff999da3),
-            Colors.white,
+            Color(0x00ffffff),
           ],
         ),
       ) : BoxDecoration(

@@ -20,7 +20,7 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
   final panelController = PanelController();
   final scrollController = ScrollController();
-  final newsController = Get.put(NewsController());
+  //final newsController = Get.put(NewsController());
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class _FeedPageState extends State<FeedPage> {
                         padding: EdgeInsets.only(top: 5, bottom: 5, right: 5),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
-
+                          /*
                           child: Obx(
                             () =>
                                 /* Image.network(
@@ -94,12 +94,12 @@ class _FeedPageState extends State<FeedPage> {
                             ),
                           ),
 
-
+                           */
 
                         ),
                       ),
                     ),
-
+                    /*
                     Obx(
                       () => Container(
                         width: MediaQuery.of(context).size.width - 150,
@@ -117,7 +117,7 @@ class _FeedPageState extends State<FeedPage> {
                         ),
                       ),
                     ),
-
+                     */
 
                   ],
                 ),

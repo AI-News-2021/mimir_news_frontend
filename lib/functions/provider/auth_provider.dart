@@ -20,9 +20,9 @@ class AuthProvider extends GetConnect {
     });
   }
 
-  Future<Response> getAuth() => get('http://192.168.1.75:3000/auth');
+  Future<Response> getAuth() => get('http://130.61.250.130:3000/auth');
 
   Future<Response> login(String email, String password) => post(
-      'http://192.168.1.75:3000/auth/login',
+      'http://130.61.250.130:3000/auth/login',
       {'email': email, 'password': password});
 }
